@@ -3,111 +3,150 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vợ còn giận anh không?</title>
+  <meta property="og:title" content="Vợ còn giận chồng thúi honggg? 💖" />
+  <meta property="og:description" content="Trang nhỏ xíu dễ thương của chồng gửi cho vợ nè 🥺💞" />
+  <title>Vợ còn giận chồng thúi honggg?</title>
   <style>
     :root{
-      --bg1:#FFE8F3;
+      --bg1:#FFEEFA;
       --bg2:#FFF6E8;
       --accent:#FF6B9A;
       --accent-2:#FFB86B;
       --text:#3b2b3b;
       --card:#FFFFFFCC;
     }
-    html,body{height:100%;margin:0;font-family:"Inter",sans-serif}
+    html,body{height:100%;margin:0;font-family:"Inter",ui-sans-serif,system-ui}
     body{
-      background: linear-gradient(160deg,var(--bg1),var(--bg2));
-      display:flex;align-items:center;justify-content:center;padding:24px;
+      background:linear-gradient(160deg,var(--bg1),var(--bg2));
+      display:flex;align-items:center;justify-content:center;padding:16px;
     }
     .card{
-      width:min(720px,96vw);
+      width:min(420px,96vw);
       background:var(--card);
       border-radius:20px;box-shadow:0 10px 30px rgba(59,43,59,0.12);
-      padding:28px 28px 40px;position:relative;overflow:hidden;text-align:center;
+      padding:28px 20px 36px;position:relative;overflow:hidden;text-align:center;
     }
     h1{
-      margin:6px 0;font-size:38px;line-height:1.2;color:var(--text);
-      letter-spacing:0.6px;font-weight:800;text-shadow:0 2px 0 rgba(255,255,255,0.6);
+      margin:10px 0 6px;font-size:30px;line-height:1.3;color:var(--text);
+      letter-spacing:0.4px;font-weight:800;text-shadow:0 2px 0 rgba(255,255,255,0.6);
     }
-    p.lead{margin:0 0 18px;color:#6b4f5f;font-size:16px}
+    p.lead{margin:0 0 18px;color:#6b4f5f;font-size:15px}
     .heart{
-      width:110px;height:110px;margin:18px auto;position:relative;
-      animation:pop 1.2s infinite cubic-bezier(.2,.9,.3,1);
+      width:100px;height:100px;margin:10px auto 8px;position:relative;
+      animation:pop 1.4s infinite cubic-bezier(.2,.9,.3,1);
     }
     .heart:before,.heart:after{
-      content:'';position:absolute;left:55px;top:0;width:55px;height:90px;
+      content:'';position:absolute;left:50px;top:0;width:50px;height:80px;
       background:linear-gradient(180deg,var(--accent),#FF85A8);
-      border-radius:55px 55px 0 0;transform:rotate(-45deg);
-      transform-origin:0 100%;box-shadow:0 6px 18px rgba(255,107,154,0.25);
+      border-radius:50px 50px 0 0;
+      transform:rotate(-45deg);transform-origin:0 100%;
+      box-shadow:0 6px 18px rgba(255,107,154,0.25);
     }
-    .heart:after{left:0;transform:rotate(45deg);background:linear-gradient(180deg,var(--accent-2),#FFC28A)}
-    @keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
-
-    .btn-row{display:flex;gap:10px;justify-content:center;margin-top:16px;position:relative;height:50px}
+    .heart:after{
+      left:0;transform:rotate(45deg);transform-origin:100% 100%;
+      background:linear-gradient(180deg,var(--accent-2),#FFC28A)
+    }
+    @keyframes pop{
+      0%,100%{transform:translateY(0) scale(1)}
+      50%{transform:translateY(-8px) scale(1.08)}
+    }
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
+      margin-top:16px;
+      position:relative;
+      min-height:60px;
+    }
     button{
       background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      border:0;color:white;padding:10px 18px;border-radius:12px;
-      font-weight:700;cursor:pointer;box-shadow:0 6px 14px rgba(255,107,154,0.18);
-      transition:all .2s ease;
+      border:0;color:white;padding:10px 18px;
+      border-radius:12px;font-weight:700;
+      cursor:pointer;font-size:15px;
+      box-shadow:0 6px 14px rgba(255,107,154,0.18);
+      transition:transform .25s;
     }
-    .muted{background:#fff;border:1px dashed rgba(59,43,59,0.06);color:#5b4350;position:absolute;}
-
-    .footer{font-size:12px;color:#7a5966;margin-top:12px}
-    canvas.confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+    button.muted{
+      background:#fff;
+      border:1px dashed rgba(59,43,59,0.06);
+      color:#5b4350;
+    }
+    canvas.confetti{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+    .footer{font-size:12px;color:#7a5966;margin-top:14px}
+    @media (max-width:420px){
+      h1{font-size:26px}
+      .heart{width:90px;height:90px}
+    }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="heart"></div>
-    <h1>Vợ còn giận anh không?</h1>
-    <p class="lead">Thử nhấn xem... ai hết giận trước nha 💞</p>
+    <h1>Vợ còn giận chồng thúi honggg?</h1>
+    <p class="lead">Nếu hết giận rồi thì ngày mai qua chồng chơi nhen bà xã ơiiiii 💖</p>
+
     <div class="btn-row">
-      <button id="btnYes">Hết giận rồi 💖</button>
-      <button id="btnNo" class="muted" style="left:180px;">Còn giận 😤</button>
+      <button id="btnYes">Hết giận rồi 💕</button>
+      <button id="btnNo" class="muted">Còn giận xíu xíu 😤</button>
     </div>
-    <p class="footer">Trang này an toàn, đáng yêu và chỉ dành cho Vợ 💕</p>
+
+    <p class="footer">Trang đáng yêu này tự chạy trốn khỏi sự tức giận của vợ đó nhaaa hahahaha 😆</p>
     <canvas class="confetti" id="confettiCanvas"></canvas>
   </div>
 
   <script>
     const canvas=document.getElementById('confettiCanvas');
     const ctx=canvas.getContext('2d');
-    let W,H;function resize(){W=canvas.width=canvas.clientWidth;H=canvas.height=canvas.clientHeight;}
+    let W,H;
+    function resize(){W=canvas.width=canvas.clientWidth;H=canvas.height=canvas.clientHeight}
     window.addEventListener('resize',resize);resize();
 
-    // Pháo hoa + tim bay khi "Hết giận rồi 💖"
     function random(min,max){return Math.random()*(max-min)+min}
+    function Confetti(){
+      this.x=random(0,W);this.y=random(-H,0);
+      this.size=random(6,12);
+      this.speed=random(1,3);
+      this.color=['#FF6B9A','#FFC28A','#FFD6F0','#9EE7FF','#C6FFDD'][Math.floor(random(0,5))];
+    }
     let confs=[];
-    function spawn(n){for(let i=0;i<n;i++){confs.push({
-      x:random(0,W),y:H,color:['#FF6B9A','#FFC28A','#FFD6F0','#9EE7FF','#C6FFDD'][Math.floor(random(0,5))],
-      size:random(6,14),speedY:random(2,6),drift:random(-1,1)
-    })}}
+    function spawn(n){for(let i=0;i<n;i++)confs.push(new Confetti())}
     function draw(){
       ctx.clearRect(0,0,W,H);
       for(let i=confs.length-1;i>=0;i--){
-        let c=confs[i];ctx.fillStyle=c.color;
-        ctx.beginPath();ctx.arc(c.x,c.y,c.size,0,Math.PI*2);ctx.fill();
-        c.y-=c.speedY;c.x+=c.drift;if(c.y<-20)confs.splice(i,1);
+        let c=confs[i];
+        c.y+=c.speed;c.x+=Math.sin(c.y/10);
+        ctx.fillStyle=c.color;
+        ctx.fillRect(c.x,c.y,c.size,c.size);
+        if(c.y>H+50)confs.splice(i,1);
       }
       requestAnimationFrame(draw);
-    }draw();
+    }
+    draw();
 
-    document.getElementById('btnYes').addEventListener('click',()=>{
-      spawn(100);
-      const h1=document.querySelector('h1');
-      h1.textContent='Yêu vợ nhất đó 💕';
-      setTimeout(()=>{h1.textContent='Vợ còn giận anh không?';},4000);
+    const btnYes=document.getElementById('btnYes');
+    const btnNo=document.getElementById('btnNo');
+    const title=document.querySelector('h1');
+
+    btnYes.addEventListener('click',()=>{
+      spawn(120);
+      title.textContent='Yêu vợ nhất trên đời 💞';
+      setTimeout(()=>title.textContent='Vợ còn giận chồng thúi honggg?',3000);
     });
 
-    // Nút "Còn giận 😤" sẽ né tránh
-    const btnNo=document.getElementById('btnNo');
-    btnNo.addEventListener('mouseenter',()=>{
-      const row=btnNo.parentElement;
-      const maxX=row.clientWidth-110;
-      const maxY=20;
-      const x=Math.random()*maxX;
-      const y=Math.random()*maxY;
-      btnNo.style.left=x+'px';
-      btnNo.style.top=y+'px';
+    // Né nút khi hover hoặc chạm
+    function moveButton(){
+      const parent=btnNo.parentElement;
+      const rect=parent.getBoundingClientRect();
+      const newX=random(0,rect.width-100);
+      const newY=random(0,rect.height-50);
+      btnNo.style.transform=`translate(${newX}px,${newY}px)`;
+    }
+
+    btnNo.addEventListener('mouseenter',moveButton);
+    btnNo.addEventListener('touchstart',(e)=>{
+      e.preventDefault();
+      moveButton();
     });
   </script>
 </body>
