@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vợ khỏi bệnh chưa?</title>
+  <style>
+    :root{
+      --bg1:#FFEEFA;
+      --bg2:#FFF6E8;
+      --accent:#FF6B9A;
+      --accent-2:#FFB86B;
+      --text:#3b2b3b;
+      --card:#FFFFFFCC;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    body{
+      background: linear-gradient(160deg,var(--bg1),var(--bg2));
+      display:flex;align-items:center;justify-content:center;padding:24px;
+    }
+    .card{
+      width:min(720px,96vw);
+      background:var(--card);
+      border-radius:20px;box-shadow:0 10px 30px rgba(59,43,59,0.12);
+      padding:28px 28px 40px;position:relative;overflow:hidden;text-align:center;
+    }
+    h1{
+      margin:6px 0 6px;font-size:42px;line-height:1;color:var(--text);
+      letter-spacing:0.6px;font-weight:800;text-shadow:0 2px 0 rgba(255,255,255,0.6);
+    }
+    p.lead{margin:0 0 18px;color:#6b4f5f;font-size:16px}
+    .heart{
+      width:120px;height:120px;margin:18px auto 8px;position:relative;transform:translateY(0);
+      animation:pop 1.2s infinite cubic-bezier(.2,.9,.3,1);
+    }
+    .heart:before,.heart:after{
+      content:'';position:absolute;left:60px;top:0;width:60px;height:96px;background:linear-gradient(180deg,var(--accent),#FF85A8);border-radius:60px 60px 0 0;transform:rotate(-45deg);transform-origin:0 100%;box-shadow:0 6px 18px rgba(255,107,154,0.25);
+    }
+    .heart:after{left:0;transform:rotate(45deg);transform-origin:100% 100%;background:linear-gradient(180deg,var(--accent-2),#FFC28A)}
+    @keyframes pop{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.06)}100%{transform:translateY(0) scale(1)}}
+
+    .btn-row{display:flex;gap:10px;justify-content:center;margin-top:16px}
+    button{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;color:white;padding:10px 18px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 6px 14px rgba(255,107,154,0.18)}
+    .muted{background:#fff;border:1px dashed rgba(59,43,59,0.06);color:#5b4350}
+
+    /* confetti canvas fullbleed */
+    canvas.confetti{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none}
+
+    .footer{font-size:12px;color:#7a5966;margin-top:12px}
+
+    /* floating cute cloud */
+    .clouds{position:absolute;inset:0;pointer-events:none}
+    .cloud{position:absolute;filter:drop-shadow(0 6px 10px rgba(91,64,90,0.06));opacity:0.9}
+    .c1{left:-10%;top:6%;transform:scale(.9);animation:float 18s linear infinite}
+    .c2{right:-12%;top:12%;transform:scale(.8);animation:float 22s linear infinite}
+    @keyframes float{0%{transform:translateX(0)}50%{transform:translateX(8%)}100%{transform:translateX(0)}}
+
+    /* responsive */
+    @media (max-width:420px){h1{font-size:30px}.heart{width:92px;height:92px}}
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-label="Vợ khỏi bệnh chưa card">
+    <div class="clouds" aria-hidden="true">
+      <svg class="cloud c1" width="220" height="70" viewBox="0 0 220 70" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="60" cy="40" rx="60" ry="28" fill="#FFF"/><ellipse cx="120" cy="24" rx="40" ry="24" fill="#FFF"/><ellipse cx="170" cy="38" rx="48" ry="24" fill="#FFF"/></svg>
+      <svg class="cloud c2" width="180" height="56" viewBox="0 0 180 56" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="32" rx="50" ry="22" fill="#FFF"/><ellipse cx="100" cy="20" rx="34" ry="18" fill="#FFF"/><ellipse cx="140" cy="32" rx="36" ry="18" fill="#FFF"/></svg>
+    </div>
+
+    <div style="padding-top:8px">
+      <div class="heart" aria-hidden="true"></div>
+      <h1>Vợ khỏi bệnh chưa?</h1>
+      <p class="lead">Gửi lời yêu thương và hy vọng đến người ấy — chạm nút để gửi thông điệp đáng yêu nhé!</p>
+
+      <div class="btn-row">
+        <button id="btnYes">Khỏi rồi 💖</button>
+        <button id="btnNo" class="muted">Chưa, cần chăm sóc 😢</button>
+      </div>
+
+      <p class="footer">Nhấn "Khỏi rồi" để xem điều bất ngờ — trang này thân thiện, an toàn và dễ thương ✨</p>
+    </div>
+
+    <canvas class="confetti" id="confettiCanvas"></canvas>
+  </div>
+
+  <script>
+    // Simple confetti when clicking Yes
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H; function resize(){W=canvas.width=canvas.clientWidth;H=canvas.height=canvas.clientHeight}
+    window.addEventListener('resize',resize);resize();
+
+    function random(min,max){return Math.random()*(max-min)+min}
+    function Confetti(){
+      this.x=random(0,W);this.y=random(-H,0);this.size=random(6,12);this.speed=random(1,4);this.rot=random(0,360);
+      this.color=['#FF6B9A','#FFC28A','#FFD6F0','#9EE7FF','#C6FFDD'][Math.floor(random(0,5))];
+      this.tilt=random(-15,15);this.drift=random(-0.8,0.8);
+    }
+    let confs=[];
+    function spawn(n){for(let i=0;i<n;i++)confs.push(new Confetti())}
+    function draw(){ctx.clearRect(0,0,W,H);for(let i=confs.length-1;i>=0;i--){let c=confs[i];c.y+=c.speed;c.x+=c.drift;c.rot+=2;ctx.save();ctx.translate(c.x,c.y);ctx.rotate(c.rot*Math.PI/180);ctx.fillStyle=c.color;ctx.fillRect(-c.size/2,-c.size/2,c.size,c.size);ctx.restore();if(c.y>H+50)confs.splice(i,1)}requestAnimationFrame(draw)}draw();
+
+    document.getElementById('btnYes').addEventListener('click',()=>{
+      spawn(120);
+      // sweet micro animation + message
+      const old = document.querySelector('h1');
+      old.textContent='Khỏi rồi nè! 🎉';
+      setTimeout(()=>{old.textContent='Vợ khỏi bệnh chưa?';},3000);
+    });
+
+    document.getElementById('btnNo').addEventListener('click',()=>{
+      const old = document.querySelector('h1');
+      old.textContent='Chăm sóc kỹ nha 💕';
+      setTimeout(()=>{old.textContent='Vợ khỏi bệnh chưa?';},3000);
+    });
+
+    // small accessibility: keyboard handling
+    document.addEventListener('keydown',e=>{if(e.key==='y' || e.key==='Y')document.getElementById('btnYes').click();if(e.key==='n' || e.key==='N')document.getElementById('btnNo').click();});
+  </script>
+</body>
+</html>
